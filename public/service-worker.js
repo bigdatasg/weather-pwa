@@ -19,10 +19,15 @@
 
 // TODO: REMEMBER: Update cache names any time any of the cached files change.
 
-const CACHE_NAME = 'static-cache-v5'; 
+const CACHE_NAME = 'static-cache-v1'; 
+
 const DATA_CACHE_NAME = 'data-cache-v1';
 
 // TODO: Add list of files to cache here.
+const FILES_TO_CACHE = ['/offline.html'];
+// TODO: Uncomment the below block, when prompted
+
+/*
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
@@ -47,7 +52,11 @@ const FILES_TO_CACHE = [
     '/images/tornado.svg',
     '/images/wind.svg',
 ];
+*/
 
+// The Service Worker "install" event
+// TODO: Uncomment the below block when prompted!
+/*
 self.addEventListener('install', (evt) => {
   console.log('[ServiceWorker] Install');
 
@@ -60,7 +69,32 @@ self.addEventListener('install', (evt) => {
   );
   self.skipWaiting();
 });
+*/
 
+// The Service Worker "activate" event (Function 1 - Basic offline XP)
+// TODO: Uncomment the following block when prompted!
+/*
+self.addEventListener('activate', (evt) => {
+  console.log('[ServiceWorker] activate');
+  // TODO: Remove previous cached data from disk.
+  evt.waitUntil(
+    caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+            if (key !== CACHE_NAME) {
+                console.log('[ServiceWorker] Removing old cache', key);
+                return caches.delete(key);
+            }
+        }));
+    })
+  );
+  self.clients.claim();
+});
+*/
+
+// The Service Worker "activate" event (Function 2 - Functional offline XP)
+// TODO: Uncomment the following block when prompted!
+
+/*
 self.addEventListener('activate', (evt) => {
   console.log('[ServiceWorker] Activate');
 
@@ -75,10 +109,32 @@ self.addEventListener('activate', (evt) => {
       }));
     })
   );
-
   self.clients.claim();
 });
+*/
 
+// Fetch Event VERSION 1
+// TODO: Uncomment the below block
+/*
+self.addEventListener('fetch', (evt) => {
+  console.log('[ServiceWorker] Fetch', evt.request.url);
+  // TODO: Add fetch event handler here.
+  if (evt.request.mode !== 'navigate') {
+    // Not a page navigation, bail out.
+    return;
+  }
+  evt.respondWith(
+    fetch(evt.request).catch(() => {
+      return caches.open(CACHE_NAME).then((cache) => {
+        return cache.match('offline.html');
+      });
+    }));
+  });
+*/
+
+// Fetch Event Version 2
+// TODO: Uncomment the below block
+/*
 self.addEventListener('fetch', (evt) => {
   console.log('[ServiceWorker] Fetch', evt.request.url);
   // TODO: Add fetch event handler here.
@@ -111,3 +167,4 @@ self.addEventListener('fetch', (evt) => {
   // TODO: Removed the check for request.mode == navigate,
   // as want the service worker to handle all requests  
 });
+*/
