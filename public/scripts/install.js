@@ -21,7 +21,7 @@ let deferredInstallPrompt = null;
 const installButton = document.getElementById('butInstall');
 installButton.addEventListener('click', installPWA);
 
-// CODELAB: Add event listener for beforeinstallprompt event
+// TODO: Add event listener for beforeinstallprompt event
 window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
 
 /**
@@ -31,7 +31,7 @@ window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
  * @param {Event} evt
  */
 function saveBeforeInstallPromptEvent(evt) {
-  //CODELAB: Add code to save event and show the install button.
+  //TODO: Add code to save event and show the install button.
   deferredInstallPrompt = evt;
   installButton.removeAttribute('hidden');
   // Our html file already has installButton defined and installButton refers to it.
@@ -44,7 +44,7 @@ function saveBeforeInstallPromptEvent(evt) {
  * @param {Event} evt
  */
 function installPWA(evt) {
-  // CODELAB: Add code show install prompt & hide the install button.
+  // TODO: Add code show install prompt & hide the install button.
   deferredInstallPrompt.prompt();
 
   // Hide the install Button as it had been called (it cant be called twice)
@@ -62,7 +62,7 @@ function installPWA(evt) {
   });
 }
 
-// CODELAB: Add event listener for appinstalled event
+// TODO: Add event listener for appinstalled event
 window.addEventListener('appinstalled', logAppInstalled);
 
 /**
@@ -72,6 +72,6 @@ window.addEventListener('appinstalled', logAppInstalled);
  * @param {Event} evt
  */
 function logAppInstalled(evt) {
-  // CODELAB: Add code to log the event
+  // TODO: Add code to log the event
   console.log('Weather App was installed.', evt);
 }

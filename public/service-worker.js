@@ -21,12 +21,14 @@
 
 const CACHE_NAME = 'static-cache-v1'; 
 
-const DATA_CACHE_NAME = 'data-cache-v1';
+// Add constant: DATA_CACHE_NAME and give a name with version
+// TODO: Uncomment below line
+// const DATA_CACHE_NAME = 'data-cache-v1';
 
 // TODO: Add list of files to cache here.
 const FILES_TO_CACHE = ['/offline.html'];
-// TODO: Uncomment the below block, when prompted
 
+// TODO: Uncomment the below block, when prompted
 /*
 const FILES_TO_CACHE = [
     '/',
@@ -123,6 +125,7 @@ self.addEventListener('fetch', (evt) => {
     // Not a page navigation, bail out.
     return;
   }
+  
   evt.respondWith(
     fetch(evt.request).catch(() => {
       return caches.open(CACHE_NAME).then((cache) => {
@@ -140,6 +143,7 @@ self.addEventListener('fetch', (evt) => {
   // TODO: Add fetch event handler here.
   if (evt.request.url.includes('/forecast/')) {
     console.log('[Service Worker] Fetch (data)', evt.request.url);
+
     evt.respondWith(
         caches.open(DATA_CACHE_NAME).then((cache) => {
           return fetch(evt.request)

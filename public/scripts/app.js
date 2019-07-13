@@ -15,6 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
+
 'use strict';
 
 const weatherApp = {
@@ -32,6 +33,7 @@ function toggleAddDialog() {
 /**
  * Event handler for butDialogAdd, adds the selected location to the list.
  */
+
 function addLocation() {
   // Hide the dialog
   toggleAddDialog();
@@ -162,7 +164,11 @@ function getForecastFromNetwork(coords) {
  * @return {Object} The weather forecast, if the request fails, return null.
  */
 function getForecastFromCache(coords) {
-  // CODELAB: Add code to get weather forecast from the caches object.
+  // Add code to get weather forecast from the caches object.
+
+  // TODO: Uncomment the below block
+
+  /*
   if (!('caches' in window)) {
     // Cache object not found in global window. Will not request cache.
     return null;
@@ -177,6 +183,7 @@ function getForecastFromCache(coords) {
     console.error('Error getting data from cache', err);
     return null;
   });
+  */
 }
 
 /**
@@ -211,10 +218,13 @@ function updateData() {
     const location = weatherApp.selectedLocations[key];
     const card = getForecastCard(location);
     
-    // CODELAB: Add code to call getForecastFromCache
+    // Add code to call getForecastFromCache
+    // TODO: Uncomment the below block
+    /*
     getForecastFromCache(location.geo).then((forecast) => {
       renderForecast(card, forecast);
     });
+    */
 
     // Get the forecast data from the network.
     getForecastFromNetwork(location.geo)
